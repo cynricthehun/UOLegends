@@ -1,0 +1,171 @@
+
+MarcusO's Advanced Fishing System for RunUO 1.0 - February 2007
+
+
+GOALS:
+
+The goals of this revamped RunUO fishing system are five-fold:
+
+1. To make fishing more fun by adding a variety of experiences. 
+2. To make fishing more profitable relative to time invested.
+3. To make sea monster loot well-rounded, balanced and complete.
+4. To draw more folks to the water, thereby stimulating sea warfare.
+5. To not add too much clutter to the ocean (stopping boats).
+6. To be an easy upgrade to existing server builds.
+
+I know a lot of folks have added things like new fish and colored
+fish steaks, but that's not what needed improving in my humble 
+opinion. The level of excitement needed to be bumped up a notch
+by adding new monsters and improving loot. That's where this
+upgrade is targeted.
+
+FEATURES:
+
+1. Added new fiction-fitting monsters that pop-up while deepwater 
+fishing. The monsters are set to pop-up every twenty-or-so fish 
+(~5 minutes), and they have loot like UOG Liches. We don't want the
+monsters to spawn too often or they would clutter the ocean with 
+dead boat-blocking corpses.
+
+2. Added new monsters to pop-up when you get a Net/Map/Sos. No more
+will you see the same dull Sea Serpents over and over, though Serps 
+still pop-up every once and a while. The new monsters have UOG 
+Lich-level loot, because they take about the same effort to kill.
+Some of the monsters have decent magic casting abilities. Like
+the Sea Serpents, these new monsters can kill you if you are slow.
+
+3. Added some additional fiction-fitting monsters that pop-up while 
+you fish for a treasure chest. These are different from the ones
+you fought while fishing for MIBs or fish.
+
+4. Added a couple of tamable sea critters. Hopefully this creates a 
+new class of Pirate-Tamers :)
+
+5. Added some new fiction-fitting items that can be fished up while
+performing regular fishing in deepwater (yes...I made sure you can't
+macro on the shore for leet loot). You now have a chance to fish up
+a magical item whenever you snag a Big Fish. The items can be very
+powerful, but their durability is always low because they've been 
+in the water for a long, long time :)
+
+6. Added 30+ new items to fish up while fishing for a chest. The 
+list includes chairs, decorative shield & axes, light sources
+and other things that are uncommon. I'm guessing it will take
+thousands of MIBs and some luck to get one of each of the new
+items. Go for it!
+
+7. For the coders out there, I've added a lot of in-line documentation
+to my Fishing.cs to help communicate what I think different parts
+of the code are doing. I've also highlighted spots where I think
+people could easily add new things (or more of what I've done).
+
+
+INSTALLATION:
+
+Unzip the file and install the new script directory, "/Fishing Monsters", 
+in the existing /Scripts/Mobiles/Monsters directory to add 14 new monster 
+types:
+
+- 5 are slimes and snakes to be fished up during chest fishing. The snake
+is tameable.
+- 9 recolored and renamed monsters spawn while normal fishing or during 
+Net/Map/SoS harvest
+
+Note that I purposely did not touch the original sea serpents, but I did
+use them and modify their templates to make some new cool serpents.
+
+Also included in the Fishing system is a revamped Fishing.cs, which gets
+placed in /Scripts/Engines/Harvest. Make sure to backup your existing version
+from Fishing.cs to Fishing_cs.old or something, just in case things don't
+work for your server build. I hope you appreciate the in-line documentation.
+
+
+SUMMARY:
+
+The new Fishing.cs expands the fishing experience in multiple dimensions.
+The new monsters have increased loot and specific different types of 
+reagents, scales, hides so as to enable complete gathering of these types 
+of resources on the water, just as they can be gathered on land. No longer 
+will you just see the same boring sea serpents...
+
+Monster Details...
+
+No. Creature Name     Loot  Scales  Reg1   Reg2    Hides   Attack Type
+--  --------------    ----  ------  ----   ----    ------  --------------
+1.  DeepSeaSnake      Avg   Blue    Root   Silk    Spined  Magery(40-65)
+2.  DeepWaterElemntl  Avg   n/a     Garlic Ginseng n/a     Magery(40-65)
+3.  FlameShark        Rich  Red     Moss   Root    Spined  Magery(60-75)
+4.  GiantWaterStridr  Avg   n/a     Silk   Pearl   n/a     Magery(50-70)
+5.  HurricaneElemntl  Avg   n/a     Silk   Garlic  n/a     Magery(40-65)
+6.  IcebergElemental  Avg   n/a     Pearl  Root    n/a     Magery(40-65)
+7.  IcebergSnake      Avg   n/a     n/a    n/a     n/a     Magery(40-65)
+8.  OilSlime          Meag  n/a     n/a    n/a     n/a     Magery(35-50)
+9.  RoamingKraken     Avg   n/a     Pearl  Ginseng n/a     Magery(40-65)
+10. SeaSlime          Meag  n/a     n/a    n/a     n/a     Magery(35-50)
+11. SeaWorm           Meag  n/a     n/a    n/a     n/a     Magery(35-50)
+12. StormSerpent      Avg   Green   Shade  Garlic  Horned  Magery(40-65)
+13. ToxicSlime        Meag  n/a     n/a    n/a     n/a     Magery(35-50)
+14. TsunamiSerpent    Rich  Red     Moss   Shade   Barbed  Magery(60-75)
+
+Most monsters have FireBreath, but it's generally weak because they have
+lower hit points than Dragons. Giving the monsters FireBreath makes them
+meaner. Some of the buggers poison. The ocean is a dangerous place. But
+take heart. None of the monsters are as mean as Land-based Elementals,
+unless of course you sail on top of them and they can hit you while
+casting spells on you.
+
+I added random color-centered hues to most of the monsters to help fit
+their title, or to match the color of the scales they give.
+
+During regular fishing you now have an opportunity to get a magical weapon
+or piece of armor in place of the stupid Big Fish. Right now it's set to
+a 10% chance to get a magic item in place of the Big Fish. It works out 
+one item every few hours so as to be a rare and enjoyable event. 
+
+To decide what extra stuff to randomly fish up while doing MIBs, I searched 
+through Pandora's Box to find Items that fit the fiction of fishing while 
+working an SoS to fish up a chest. If you are over a sunken ship, you should 
+fish up more interesting things than stupid bones etc.
+
+IcebergSnakes and FlameSharks are Tameable!!
+
+I tested each of these creatures individually by creating various test versions
+of Fishing.cs that shunted the code to spawn only the creature-under-test 
+when a Net/Map/Sos harvest occurred. I also made a version of Fishing.cs that
+spawned the monsters way more quickly. It was pretty funny to see a boat 
+surrounded by slimes, snakes and other critters. Be forewarned that macro-fishing
+will cause you to sail on top of monsters and you will die. Yes, it took 
+a long while to test this system, but it seems pretty robust. 
+
+Note that I didn't want to make the monsters too strong, so the elementals 
+are weaker cousins from land-based varieties. But at least you get a different
+varieties of critters at different times, sometimes carrying a Net/Map/SoS. 
+Typically there's never a dull 5 minutes now while you're on the ocean.
+The new buggers (even without Net/Map/SoS) pop up while you are just kicking 
+back having a beer and fishing.
+
+Enjoy!
+
+MarcusO
+
+Addendum:
+
+Here are the Exact Creature Names. Note that the Admin Tools appear to
+be hardcoded, so they don't seem to recognize these in pick lists. So if 
+you want to add one, you have to do it manually: [add DeepSeaSnake
+
+new DeepSeaSnake();
+new DeepWaterElemental();
+new FlameShark();
+new GiantWaterStrider();
+new HurricaneElemental();
+new IcebergElemental();
+new IcebergSnake();
+new OilSlime();
+new RoamingKraken();
+new SeaSlime();
+new SeaWorm();
+new StormSerpent();
+new ToxicSlime();
+new TsunamiSerpent();
+

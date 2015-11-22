@@ -1,0 +1,373 @@
+PlayerRangeSensitiveMod v1.4 
+RunUO 1.0.0 version
+updated 1/22/05
+ArteGordon
+
+[b]SUMMARY:[/b]
+AI mod that provides most of the benefits of having PlayerRangeSensitive=false with virtually none of the server load.
+
+Version 1.4
+updated 1/22/05
+
+- installation updated for RunUO 1.0.0
+
+[b]DESCRIPTION:[/b]
+
+
+This mod resulted from a great idea by KillerBeez to allow servers to set PlayerRangeSensitive=true but still have mobs to behave as though it were false for some period of time even when players are out of range.
+What this mod does is add a timer to BaseAI.cs so that creature AI remains active for a delay period (set by the DeactivationDelay property, default is 2 minutes) after AI deactivation is triggered (when players go out of range).  This essentially allows mob AI to behave as though PlayerRangeSensitive=false when players have been around but then move well beyond the normal range sensitivity (e.g. to other maps, or outside of dungeons), while leaving it true (hence no cpu load) for the vast majority of areas without any recent player activity.
+
+This is particularly effective on shards with low player counts since it provides most of the benefits of PlayerRangeSensitive=false with virtually none of the load.
+One thing that I especially like is that fact that even with PlayerRangeSensitive=true, mobs will no longer collect at dungeon entrances!
+
+I would estimate that shards that are currently running with PlayerRangeSensitive=false, could set it to true, put the delay at something like 10-20 minutes and get behavior that was essentially indistinguishable from PlayerRangeSensitive=false but with 50-90% reduction in overall cpu load.  Even at longer delay settings (hours) I would estimate significant reductions in overall cpu load given that significant fractions of each facet are likely to be unvisited over the course of an hour or two and the cpu load reduction will be esentially proportional to this fraction.
+
+[b]Commands:[/b]
+
+- the "[setdeactivation [minutes]" command allows an admin to change the default deactivation delay in-game.  Note, setting it to zero will essentially disable the mod returning to the normal PlayerRangeSensitive=true behavior.
+Also, changed values in-game will not be restored on server restarts.  For permanent change of the deactivation delay, set the DefaultDeactivationDelay static variable in setdeactivation.cs
+
+
+
+[b]INSTALLATION:[/b]
+
+If you are upgrading from an existing RC0 installation that had this mod in place then follow the upgrade instructions, otherwise just go right to the 1.0.0 installation instructions.
+
+[b][u]Upgrading to 1.0.0 from an existing RC0 installation[/u][/b]
+
+Because Basecreature.cs in 1.0.0 updated the serialization/deserialization to version 13, if you had this mod installed in RC0 you need to go through this 2-step procedure to allow existing RC0 basecreature saves to be loaded into a 1.0.0 server.
+
+[u]Step 1:[/u]  Modify the old RC0 basecreature.cs to remove the PlayerRangeSensitiveMod modifications to the Serialization method.  What are trying to do is to create a clean version 11 RC0 save that will be guaranteed to be readable by 1.0.0
+
+around line 1143 at the end of the Serialization method, comment out the PlayerRangeSensitive mod
+
+[code]
+			// Version 11
+			writer.Write( (bool) m_HasGeneratedLoot );
+			
+			// ARTEGORDONMOD
+			// comment out the PlayerRangeSensitiveMod modifications
+			//if(m_AI != null && m_AI.m_DeactivationTimer != null && m_AI.m_DeactivationTimer.Running){
+			     // write out the time left on the deactivation timer
+			//     writer.Write( (TimeSpan) (m_AI.m_DeactivationTimer.m_End - DateTime.Now));
+			//} else {
+			     // not active so on deserialization deactivate immediately
+			//     writer.Write( (TimeSpan) TimeSpan.Zero );
+			//}
+		}
+
+[/code]
+
+and change the version number back to 11 at the beginning of the Serialization method in basecreature.cs
+around line 1047
+
+[code]
+        // change the version number back to 11
+	writer.Write( (int) 11 ); // version
+[/code]
+
+[u]Step 2:[/u] Start up the RC0 server with the newly modified basecreature.cs and do a [save.  You now have a Save that can be read in properly under 1.0.0  Now just follow the instructions for installing the mod to 1.0.0
+
+
+[b][u]Installing to 1.0.0[/u[/b]
+
+To install it either make the changes described below if you have made custom modifications to your BaseAI.cs and/or Basecreature.cs, or just replace the 1.0.0 distribution versions of BaseAI.cs and Basecreature.cs (always make a backup) with the ones included in the package.  
+
+This mod only works when PlayerRangeSensitive=true.
+
+To enable PlayerRangeSensitive=true, go to line 4325 in basecreature.cs and find the line that looks like
+
+public virtual bool PlayerRangeSensitive{ get{ return true; } }
+
+In 1.0.0 this is set to true by default, so there should be no need to change it.
+
+
+FOR USERS WITH CUSTOM BASECREATURE.CS SCRIPTS
+----------------------------
+
+in Scripts/Engines/AI/Creature/BaseCreature.cs change the version number around line 1150
+
+[code]
+        //ARTEGORDONMOD
+        // changed from version 13 to version 14
+	writer.Write( (int) 14 ); // version
+[/code]
+
+then around line 1251 at the end of the Serialize method
+
+change
+[code]
+			// Version 13
+			writer.Write( (bool) ( m_Friends != null && m_Friends.Count > 0 ) );
+
+			if ( m_Friends != null && m_Friends.Count > 0 )
+				writer.WriteMobileList( m_Friends, true );
+[/code]
+to
+[code]
+
+			// Version 13
+			writer.Write( (bool) ( m_Friends != null && m_Friends.Count > 0 ) );
+
+			if ( m_Friends != null && m_Friends.Count > 0 )
+				writer.WriteMobileList( m_Friends, true );
+			
+			// ARTEGORDONMOD
+			// Version 14
+			if(m_AI != null && m_AI.m_DeactivationTimer != null && m_AI.m_DeactivationTimer.Running){
+			     // write out the time left on the deactivation timer
+			     writer.Write( (TimeSpan) (m_AI.m_DeactivationTimer.m_End - DateTime.Now));
+			} else {
+			     // not active so on deserialization deactivate immediately
+			     writer.Write( (TimeSpan) TimeSpan.Zero );
+			}
+[/code]
+
+and around line 1456 at the end of the Deserialize method, change
+
+[code]
+
+			CheckStatTimers();
+
+			ChangeAIType(m_CurrentAI);
+[/code]
+
+to
+
+[code]
+
+			CheckStatTimers();
+
+			ChangeAIType(m_CurrentAI);
+			
+			// ARTEGORDONMOD
+			if ( version >= 14 )
+			{
+				TimeSpan restartDeactivationdelay = reader.ReadTimeSpan();
+				if(m_AI != null) {
+				    m_AI.m_RestartDeactivationdelay = restartDeactivationdelay;
+				}
+			}
+
+[/code]
+
+and around line 3940 replace the OnDelete method with this
+
+[code]
+public override void OnDelete()
+		{
+			SetControlMaster( null );
+			SummonMaster = null;
+			
+			//ARTEGORDONMOD
+			// Stop the timers immediately on delete
+			if ( m_AI != null && m_AI.m_DeactivationTimer != null )
+                m_AI.m_DeactivationTimer.Stop();
+
+			base.OnDelete();
+		}
+[/code]
+
+
+
+FOR USERS WITH CUSTOM BASEAI.CS SCRIPTS
+----------------------------
+
+in baseai.cs this is the modified code 
+At the top of the BaseAI class definition around line 45, change
+
+[code]
+      public BaseCreature      m_Mobile; 
+[/code]
+
+to 
+
+[code]
+      public BaseCreature      m_Mobile; 
+       
+      //ARTEGORDONMOD 
+      public InternalTimer m_DeactivationTimer;
+      public TimeSpan     m_RestartDeactivationdelay = TimeSpan.FromMinutes(-1);		 
+      public virtual double DeactivationDelay { get{ return SetDeactivation.DefaultDeactivationDelay; } }  // delay in minutes 
+[/code]
+ 
+
+
+and then around line 2555, replace the Deactivate and Activate methods 
+
+[code]
+public virtual void Deactivate()
+		{
+			if ( m_Mobile.PlayerRangeSensitive )
+				m_Timer.Stop();
+		}
+
+		public virtual void Activate()
+		{
+			if ( !m_Timer.Running )
+			{
+				m_Timer.Delay = TimeSpan.Zero;
+				m_Timer.Start();
+			}
+		}
+[/code]
+
+with this
+
+[code]
+
+		//ARTEGORDONMOD
+        // added a timer for delaying deactivation of mobs ai when playerrangesensitivity is true
+        //BEGIN  deactivation timer
+		public class InternalTimer : Timer
+        {
+            private BaseAI m_b;
+            public DateTime m_End;
+
+            public InternalTimer(BaseAI b, TimeSpan delay ) : base( delay )
+            {
+                 m_b = b;
+                 m_End = DateTime.Now + delay;
+			     Priority = TimerPriority.OneSecond;
+            }
+
+            protected override void OnTick()
+            {
+                // 5/27/04
+                // added a check here to make sure that the ai never gets turned off when the sector is active.  This can happen if a mob wanders from
+                // a deactivated sector to an activated sector while the timer is running
+
+                Sector sect = null;
+                if(m_b != null && m_b.m_Mobile != null && m_b.m_Mobile.Map != null){
+                    sect = m_b.m_Mobile.Map.GetSector( m_b.m_Mobile );    
+                }
+
+                if (m_b != null && m_b.m_Timer != null && ((sect != null && !sect.Active) || (sect == null))){
+                    m_b.m_Timer.Stop();
+                }
+                Stop();
+            }
+        }
+
+		public void DoDeactivationTimer( TimeSpan delay )
+        {
+            if ( m_DeactivationTimer != null )
+                m_DeactivationTimer.Stop();
+            if(delay == TimeSpan.Zero) {
+                // just stop the ai immediately
+                if(this.m_Timer != null)
+                    this.m_Timer.Stop();
+            } else {
+                m_DeactivationTimer = new InternalTimer( this, delay );
+                m_DeactivationTimer.Start();
+            }
+        }
+        //END deactivation timer
+
+	public virtual void Deactivate()
+	{
+		if ( m_Mobile.PlayerRangeSensitive ){
+                    //ARTEGORDONMOD
+    		    // replaced the m_Timer.Stop() with a delayed version
+    		    // is the AI timer even active?
+    		    if(!m_Timer.Running) return;
+    			// check to see if this is on a restart with partial delay
+    			if(m_RestartDeactivationdelay >= TimeSpan.Zero){
+    			     DoDeactivationTimer(m_RestartDeactivationdelay);
+    			     // and then reset it so that it returns to the default on subsequent deactivations
+    			     m_RestartDeactivationdelay = TimeSpan.FromMinutes(-1);
+    			} else {
+    			     DoDeactivationTimer(TimeSpan.FromMinutes(DeactivationDelay));
+    			}
+				//m_Timer.Stop();
+		    }
+		}
+
+	public virtual void Activate()
+	{
+		//ARTEGORDONMOD
+		// turn off any deactivation timer that might be running
+		if(m_DeactivationTimer != null){
+			m_DeactivationTimer.Stop();
+		}
+        if ( !m_Timer.Running )
+		{
+			m_Timer.Delay = TimeSpan.Zero;
+			m_Timer.Start();
+		}
+	}
+[/code]
+
+around line 2612 in the AITimer OnTick method, change
+
+[code]
+		else if ( m_Owner.m_Mobile.PlayerRangeSensitive )//have to check this in the timer....
+		{
+			Sector sect = m_Owner.m_Mobile.Map.GetSector( m_Owner.m_Mobile );
+			if ( !sect.Active )
+			{
+				m_Owner.Deactivate();
+				return;
+			}
+		}
+	
+[/code]
+
+to
+
+[code]
+                // ARTEGORDONMOD
+                // if the deactivation timer is still running then ignore the playerrangesensitivity
+		else if ( m_Owner.m_Mobile.PlayerRangeSensitive && 
+                (m_Owner.m_DeactivationTimer == null || !m_Owner.m_DeactivationTimer.Running)) 
+		{
+    			Sector sect = m_Owner.m_Mobile.Map.GetSector( m_Owner.m_Mobile );
+    			if ( !sect.Active )
+    			{
+    				m_Owner.Deactivate();
+    				// with the deactivation timer we can fall through this since the ai will still be active for the delay period
+    				//return;
+			}
+		}
+[/code]
+
+
+[b]CHANGELOG:[/b]
+
+Version 1.3
+updated 5/27/04
+- fixed a bug in which mob AI could be shut off in an active sector under certain conditions, occasionally leading to mobs that appeared to just stand around.  This would occur when a mob wandered from a deactivated sector to an activated sector while the timer was running.  
+
+Version 1.2
+updated 5/19/04
+- added the "[setdeactivation [minutes]" command that allows an admin to change the default deactivation delay in-game.  Note, setting it to zero
+will essentially disable the mod returning to the normal PlayerRangeSensitive=true behavior.
+
+- added two lines to the BaseCreature OnDelete() method to stop the deactivation timer immediately on deleting the mob instead of waiting for it to time out normally.  It handles the case of mobs that were activated by coming in contact with a player, but were then killed without any players around.  This handles that case more cleanly but is not absolutely necessary in that with or without this change the timers still eventually get cleaned up properly.  
+
+version 1.1 RC0
+updated 4/09/04
+- installation updated for RC0.  No changes in functionality.
+
+Version 1.1
+updated 2/14/04
+- serialized the deactivation timer state in basecreature.cs so that on server restart mobs dont automatically activate their AI for the entire deactivation delay period.  In short, it eliminates the cpu load spike following server restart.
+
+- Note, the very first time a server is started with the mod there will still be the load spike for the delay period, but it will not occur for any restart following the first one.
+
+- If you dont want to make the serialization mod in basecreature.cs, that is fine. You can just leave it out and it wont affect anything other than the transient server restart cpu load.  The rest of the mod will work fine.
+
+Version 1.0
+updated 2/12/04
+- This mod resulted from a great idea by KillerBeez to allow servers to set PlayerRangeSensitive=true but still have mobs to behave as though it were false for some period of time even when players are out of range.
+
+- What this mod does is add a timer to BaseAI.cs so that creature AI remains active for a delay period (set by the DeactivationDelay property, default is 2 minutes) after AI deactivation is triggered (when players go out of range).  This essentially allows mob AI to behave as though PlayerRangeSensitive=false when players have been around but then move well beyond the normal range sensitivity (e.g. to other maps, or outside of dungeons), while leaving it true (hence no cpu load) for the vast majority of areas without any recent player activity.
+
+- This is particularly effective on shards with low player counts since it provides most of the benefits of PlayerRangeSensitive=false with virtually none of the load.
+One thing that I especially like is that fact that even with PlayerRangeSensitive=true, mobs will no longer collect at dungeon entrances!
+
+- Note, if PlayerRangeSensitive is set to false, this mod will have no effect.
+
+- Also, immediately after server restart, server load will jump up as though PlayerRangeSensitive=false (all mobs active) for the delay period, after which it will settle down to the reduced levels of PlayerRangeSensitive=true (I may adjust this behavior in a later update).
+
+- I would estimate that shards that are currently running with PlayerRangeSensitive=false, could set it to true, put the delay at something like 10-20 minutes and get behavior that was essentially indistinguishable from PlayerRangeSensitive=false but with 50-90% reduction in overall cpu load.  Even at longer delay settings (hours) I would estimate significant reductions in overall cpu load given that significant fractions of each facet are likely to be unvisited over the course of an hour or two and the cpu load reduction will be esentially proportional to this fraction.

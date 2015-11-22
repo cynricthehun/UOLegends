@@ -1,0 +1,13 @@
+Copy the contents of this directory to your RunUO Root directory. Please keep the file structure.
+
+Then load the runuo server, it should show an image saying UO Architect Server Beta 2.6 loaded on port 2594
+
+If you see this in the runuo console then you our the server side of our script installed properly.
+
+Next use your Admin Username and Password to connect to the RunUO server through the UO Architect Client Connection wizard, with your servers IP, and port 2594.
+
+Once connected you can build and move any buildings in the uoar client database onto RunUO Shard map in real time and placeit or move it around. 
+
+Version versions of UO Architect currently in development will have standalone features added so you can build buld worlds with out runuo or osi uo client. More infomation on that later will be added to http://www.orbsydia.com
+
+All support for this script should be done on orbsydia.com only, not runuo.

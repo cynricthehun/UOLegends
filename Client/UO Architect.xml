@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <prefix>[</prefix>
+  <multiPatch multiIdxTarget="" multiMulTarget="" />
+  <server id="2bfdcaec-1065-4cc8-8098-9c41d640b5a5">
+    <name>Renaissance</name>
+    <password>adidas</password>
+    <ip>127.0.0.1</ip>
+    <port>2594</port>
+    <acct>11joey</acct>
+  </server>
+</settings>

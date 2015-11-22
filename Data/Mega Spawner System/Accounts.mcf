@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<AccountsList>
+	<Account>
+		<Name>mordacca</Name>
+		<Access>0</Access>
+		<AdminMenuAccessList>
+			<AccountsManagement>True</AccountsManagement>
+			<SystemConfig>True</SystemConfig>
+		</AdminMenuAccessList>
+	</Account>
+	<Account>
+		<Name>default user</Name>
+		<Access>4</Access>
+		<AdminMenuAccessList>
+			<AccountsManagement>False</AccountsManagement>
+			<SystemConfig>False</SystemConfig>
+		</AdminMenuAccessList>
+	</Account>
+	<Account>
+		<Name>11joey</Name>
+		<Access>1</Access>
+		<AdminMenuAccessList>
+			<AccountsManagement>False</AccountsManagement>
+			<SystemConfig>False</SystemConfig>
+		</AdminMenuAccessList>
+	</Account>
+	<Account>
+		<Name>bubby</Name>
+		<Access>1</Access>
+		<AdminMenuAccessList>
+			<AccountsManagement>False</AccountsManagement>
+			<SystemConfig>False</SystemConfig>
+		</AdminMenuAccessList>
+	</Account>
+</AccountsList>

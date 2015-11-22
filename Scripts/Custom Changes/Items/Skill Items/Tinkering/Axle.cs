@@ -1,0 +1,64 @@
+using System;
+using Server;
+
+namespace Server.Items
+{
+	[Flipable( 0x105B, 0x105C )]
+	public class Axle : Item
+	{
+		[Constructable]
+		public Axle() : this( 1 )
+		{
+		}
+
+		[Constructable]
+		public Axle( int amount ) : base( 0x105B )
+		{
+			Stackable = true;
+			Amount = amount;
+			Weight = 1.0;
+		}
+
+		public override void OnSingleClick( Mobile from )
+		{
+			if ( this.Name == null )
+			{
+				if ( this.Amount > 1 )
+				{
+					LabelTo( from, this.Amount + " axles" );
+				}
+				else
+				{
+					LabelTo( from, "an axle" );
+				}
+			}
+			else
+			{
+				LabelTo( from, this.Name );
+			}
+		}
+
+		public Axle( Serial serial ) : base( serial )
+		{
+		}
+
+		public override Item Dupe( int amount )
+		{
+			return base.Dupe( new Axle(), amount );
+		}
+
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+
+			writer.Write( (int) 0 ); // version
+		}
+
+		public override void Deserialize( GenericReader reader )
+		{
+			base.Deserialize( reader );
+
+			int version = reader.ReadInt();
+		}
+	}
+}

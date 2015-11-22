@@ -1,0 +1,39 @@
+This system requires the latest installation of the XmlSpawner2 package (at least version 2.94) if you want to use the client Go/Tracking/Synchronization features or the transfer server. You can find that package here XmlSpawner2
+
+Just unzip the Spawn Editor package (spawneditor2-vxxx.rar and spawneditor2-support.rar) into a folder and run Setup.bat. Then launch the SpawnEditor2.exe executable.
+
+For the client synchronization features just have your client running at the same time. I havent tested this with the 3d client yet.
+
+See the Readme.htm file in the package for more details.
+
+Transfer Server Installation:
+1) download the TransferServer-vxxx.rar package.
+2) Copy the TransferServer.cs and GetObjectData.cs scripts into your custom scripts area.
+3) Place a copy of the transferserver.dll file in your main RunUO installation folder.
+4) Add the following lines to your RunUO Data/Assemblies.cfg file
+
+System.Runtime.Remoting.dll
+TransferServer.dll
+
+When you restart your server, the Transfer Server will be started by default and you will see a message on the console. You can disable automatic startup by changing the default value of the 'Enabled' property in TransferServer.cs (you can then start it manually with the '[xts start' command).
+By default, the Transfer Server will use port 8030 for communication. This can be changed in TransferServer.cs
+
+To start and stop the Transfer Server at any time use the
+
+[xts start
+[xts stop
+
+commands.
+
+TROUBLESHOOTING:
+If you are having trouble starting up SpawnEditor2.exe or you receive error messages when you run Setup.bat, you may be missing some needed system dlls (mfc71.dll seems to be a common one). To fix this problem follow these steps:
+
+1)  To find out what required system dlls you might be missing, run the dll dependency walker program 'depends.exe' that can be downloaded at http://www.dependencywalker.com/ and open up the UOMap.ocx from the File menu.
+
+
+2) Note any missing required dlls that it reports (shown in red).
+
+3) Get the missing dlls and install them in the windows System32 folder. You can probably find the dll that you need at this site http://www.dll-files.com/dllindex/
+(Dont worry about missing Java dlls since Java support is not required).
+
+4) Run Setup.bat again to install the UOMap.ocx tool.

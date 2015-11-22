@@ -1,0 +1,778 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="ReadMe_files/filelist.xml">
+<link rel=Edit-Time-Data href="ReadMe_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Spawn Editor</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Matt Wilson</o:Author>
+  <o:LastAuthor>Matt Wilson</o:LastAuthor>
+  <o:Revision>7</o:Revision>
+  <o:TotalTime>76</o:TotalTime>
+  <o:Created>2005-07-07T21:50:00Z</o:Created>
+  <o:LastSaved>2005-07-09T20:52:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>1401</o:Words>
+  <o:Characters>7987</o:Characters>
+  <o:Company>MIT</o:Company>
+  <o:Lines>66</o:Lines>
+  <o:Paragraphs>18</o:Paragraphs>
+  <o:CharactersWithSpaces>9370</o:CharactersWithSpaces>
+  <o:Version>11.6360</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<link rel=Stylesheet type="text/css" media=all href="css/default.css">
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:105972952;
+	mso-list-template-ids:-569489268;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:957759375;
+	mso-list-template-ids:587745854;}
+@list l1:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:1280181707;
+	mso-list-template-ids:-232988742;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:1822766919;
+	mso-list-template-ids:-715345428;}
+@list l3:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!-- Start of header/navigation area --><!-- CARE MUST BE TAKEN WHEN MODIFYING ANYTHING WITHIN THE HEADER/NAVIGATION AREA --><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="4098"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=blue style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0in;background:navy;mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:1.5pt'>
+  <td valign=top style='background:#555555;padding:0in 0in 0in 0in;height:1.5pt'>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+<!-- Spawn Editor Logo -->
+ <tr style='mso-yfti-irow:1;height:1.5pt'>
+  <td valign=top style='background:silver;padding:0in 0in 0in 0in;height:1.5pt'>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;height:1.5pt'>
+  <td valign=top style='background:#555555;padding:0in 0in 0in 0in;height:1.5pt'>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+  <td valign=top style='padding:0in 0in 0in 0in'>
+  <p class=MsoNormal><span style='font-size:18.0pt;color:white'>Spawn Editor 2</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none;mso-hide:all'><o:p>&nbsp;</o:p></span></p>
+
+<!-- Menu System -->
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0in;background:#000040;mso-padding-alt:
+ 0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:1.5pt'>
+  <td valign=top style='background:#555555;padding:0in 0in 0in 0in;height:1.5pt'
+  border=0>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+<!-- Button Elements -->
+ <tr style='mso-yfti-irow:1;height:1.5pt'>
+  <td valign=top style='background:silver;padding:0in 0in 0in 0in;height:1.5pt'
+  border=0>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;mso-yfti-lastrow:yes;height:1.5pt'>
+  <td valign=top style='background:#555555;padding:0in 0in 0in 0in;height:1.5pt'
+  border=0>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='display:none;mso-hide:all'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0in;background:#000040;mso-padding-alt:
+ 0in 0in 0in 0in'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:1.5pt'>
+  <td valign=top style='background:#555555;padding:0in 0in 0in 0in;height:1.5pt'
+  border=0>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;height:1.5pt'>
+  <td valign=top style='background:silver;padding:0in 0in 0in 0in;height:1.5pt'
+  border=0>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2;mso-yfti-lastrow:yes;height:1.5pt'>
+  <td valign=top style='background:#555555;padding:0in 0in 0in 0in;height:1.5pt'
+  border=0>
+  <p class=MsoNormal><span style='font-size:2.0pt;mso-bidi-font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p><span style='font-size:18.0pt'><!-- End of top header/navigation area --><!-- ADD PAGE CONTENT BELOW THIS POINT -->User
+Manual</span></p>
+
+<p><a href="#Introduction"><span style='font-size:10.0pt'>[Introduction]</span></a><span
+style='font-size:10.0pt'>&nbsp; </span><a href="#Overview"><span
+style='font-size:10.0pt'>[Overview]</span></a><span style='font-size:10.0pt'>&nbsp;
+</span><a href="#Installation"><span style='font-size:10.0pt'>[Installation]</span></a><span
+style='font-size:10.0pt'>&nbsp; </span><a href="#Configuration"><span
+style='font-size:10.0pt'>[Configuration]</span></a><span style='font-size:10.0pt'>&nbsp;&nbsp;</span>
+<a href="#Commands"><span style='font-size:10.0pt'>[Commands]</span></a><span
+style='font-size:10.0pt'>&nbsp; <a href="#HowTo">[How-To]</a> </span></p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p><a name=Introduction><em><b><u>Introduction</u></b></em></a><span
+class=GramE>&nbsp; </span><span style='font-size:10.0pt'><a href="#Top">[Top]</a></span></p>
+
+<p><span style='font-size:10.0pt'>Welcome to the Spawn Editor <span
+class=GramE>2<span style='mso-spacerun:yes'>&nbsp; </span>user</span>
+manual.&nbsp; This document will try to explain how to use the editor to
+quickly and accurately create <span class=SpellE>spawners</span> in <span
+class=SpellE>RunUO</span>.</span></p>
+
+<p><span style='font-size:10.0pt'><a href="#Top">[Top]</a></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p><a name=Overview><em><b><u>Overview</u></b></em></a><span class=GramE>&nbsp;
+</span><span style='font-size:10.0pt'><a href="#Top">[Top]</a></span></p>
+
+<p><span style='font-size:10.0pt'>The main screen of Spawn Editor is broken
+down into three areas.&nbsp; The first area is the left panel which contains
+two groups of controls.&nbsp; The top group called <strong>Map Settings</strong>
+is used <span class=GramE>for<span style='mso-spacerun:yes'>&nbsp;
+</span>enabling</span> client interactions as well as some map <span
+class=SpellE>behaviour</span> controls.&nbsp;<span
+style='mso-spacerun:yes'>&nbsp; </span><span class=GramE>Selecting the
+&#8216;Details&#8217; checkbox will open up the <b style='mso-bidi-font-weight:
+normal'>Spawn Type, Spawn Details</b>, <b style='mso-bidi-font-weight:normal'>and
+Spawn Entries</b> panels.</span><span style='mso-spacerun:yes'>&nbsp;
+</span>Currently the detailed display is fixed at 1024x768.<span
+style='mso-spacerun:yes'>&nbsp; </span>With &#8216;Details&#8217; off, the main
+map window can be resized and limited spawn information can still be seen and
+selected in the <b style='mso-bidi-font-weight:normal'>Spawn List</b> area on
+the left.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt'>The bottom group is called <strong>Spawn
+Types</strong> and is used for selecting and displaying what type of objects
+the <span class=SpellE>spawner</span> is supposed to create.&nbsp; The <strong>Spawn
+Types</strong> list can be changed to show all items and mobiles, only items,
+or only mobiles.&nbsp; The bottom of the <strong>Spawn Types</strong> group has
+a total count of the types currently available in the list.&nbsp; The second
+area of the application is the centre panel where the <span class=SpellE>spawners</span>
+can be edited visually.&nbsp; The map can be zoomed in or out using the zoom
+slider found in the <strong>Map Settings</strong> area of the left panel.&nbsp;
+The third area of the application is the right panel and contains two groups of
+controls.&nbsp; The top group is called <strong>Spawn Details</strong> and is
+used to set the <span class=SpellE>spawners</span> properties.&nbsp; The bottom
+group is called the <strong>Spawn List</strong> and shows all of the <span
+class=SpellE>spawners</span> currently defined.</span></p>
+
+<p><span style='font-size:10.0pt'>The editor works based on the current version
+of <span class=SpellE>RunUO</span> and the scripts associated with it.&nbsp;
+When the editor starts for the first time, it attempts to load all types
+defined in the <span class=SpellE>RunUO</span> server by loading the assemblies
+of the following binaries:</span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo1;tab-stops:list .5in'><span style='font-size:10.0pt'>RunUO.exe</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo1;tab-stops:list .5in'><span style='font-size:10.0pt'>Scripts\Output\Scripts.dll</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo1;tab-stops:list .5in'><span style='font-size:10.0pt'>Scripts\Output\Scripts.CS.dll</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo1;tab-stops:list .5in'><span style='font-size:10.0pt'>Scripts\Output\Scripts.VB.dll</span></li>
+</ul>
+
+<p><span style='font-size:10.0pt'>This reason for this is to populate the <strong>Spawn
+Types</strong> control located in the left panel of the editor.&nbsp;
+Therefore, it is necessary to have compiled all <span class=SpellE>RunUO</span>
+scripts prior to starting the <span class=GramE>editor,</span> otherwise no
+types will appear in the list.&nbsp; The other requirement for the editor to
+work is that it must have access to any <strong>map*.<span class=SpellE>mul</span></strong>
+files required to draw the map in the centre panel which leads us to the
+configuration of the application.</span></p>
+
+<p><span style='font-size:10.0pt'><a href="#Top">[Top]</a></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p><a name=Installation><strong><i><u>Installation</u></i></strong></a><span
+style='mso-bookmark:Installation'></span><span class=GramE><span
+style='font-size:10.0pt'>&nbsp; </span></span><a href="#Top"><span
+style='font-size:10.0pt'>[Top]</span></a></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:10.0pt'>Unzip
+     the Spawn Editor 2 package into a folder.<span
+     style='mso-spacerun:yes'>&nbsp; </span>This will contain the main
+     executable along with several .<span class=SpellE>dlls</span> that are
+     required including Ultima.dll, UOMAPLib.dll, AxUOMAPLib.dll</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:10.0pt'>Run
+     <span class=SpellE><strong>Setup.bat</strong></span>.&nbsp; This will
+     register <span class=SpellE>UOMap.ocx</span>.<span
+     style='mso-spacerun:yes'>&nbsp; </span>If you move the <span class=SpellE>SpawnEditor</span>
+     files to a different folder you will need to run <span class=SpellE><b
+     style='mso-bidi-font-weight:normal'>Setup.bat</b></span> again in the new
+     location.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:10.0pt'>Launch
+     the <span class=SpellE><span class=GramE><b>SpawnEditor</b></span></span><span
+     class=GramE> .</span></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:10.0pt'>If
+     this is the first time running Spawn Editor, you will be brought to the <b>Configuration
+     </b>screen to specify the directories where <span class=SpellE><b>RunUO</b></span>
+     and your <span class=SpellE><b>Ultima</b></span><b> Online</b> client
+     reside. Spawn Editor will attempt to automatically find your UO client
+     based on the current registry settings for UO. If this is incorrect,
+     simply change the directory to point to any valid UO map files.&nbsp; See
+     the <a href="#Configuration">Configuration</a> section for more
+     information on the items in the dialog.<br>
+     <br>
+     <em><b><u>NOTE</u></b></em>:&nbsp; .NET applications have security
+     restrictions imposed on them by default.&nbsp; If you would like to run
+     the Spawn Editor from a share or any mapped drive you will need to do the
+     following<span class=GramE>:</span><br>
+     <br>
+     <span class=SpellE>i</span>.&nbsp; Click on Start... Settings... Control
+     Panel... Administrative Tools... <strong>Microsoft .NET Framework Wizards</strong>...<br>
+     <br>
+     ii. Click on <strong>Adjust .net Security</strong> <br>
+     <br>
+     iii. Select <strong>Make changes to this computer</strong> and click <span
+     class=GramE><strong>Next</strong></span>.<br>
+     <br>
+     iv. Click on <strong>Local Intranet</strong> and move the slider up to the
+     top marker where it says <strong>Full Trust</strong>.<br>
+     <br>
+     v. Click <span class=GramE><strong>Next</strong></span> and then click <strong>Finish</strong>.
+     </span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l1 level1 lfo2;tab-stops:list .5in'><span style='font-size:10.0pt'>All
+     Done! Happy Spawning!<br>
+     <br>
+     <br>
+     <b>Note</b>: An additional <span class=SpellE>RunUO</span> <span
+     class=SpellE>spawner</span> script is required called <span class=SpellE><b>XmlSpawner</b></span>
+     which is what Spawn Editor natively supports as a <span class=SpellE>spawner</span>.
+     </span></li>
+</ol>
+
+<p><span style='font-size:10.0pt'><a href="#Top">[Top]</a></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p><a name=Configuration><em><b><u>Configuration</u></b></em></a><span
+class=GramE>&nbsp; </span><span style='font-size:10.0pt'><a href="#Top">[Top]</a></span></p>
+
+<p><span style='font-size:10.0pt'>The editor needs a bit of configuration
+before it can work.&nbsp; There are two key pieces of information that must be
+supplied to the editor for it to function properly.&nbsp; These are:</span></p>
+
+<ul type=disc>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo3;tab-stops:list .5in'><span style='font-size:10.0pt'>Path
+     to the <span class=SpellE>RunUO</span> executable</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l2 level1 lfo3;tab-stops:list .5in'><span style='font-size:10.0pt'>Path
+     to the <span class=SpellE>Ultima</span> Online client executable</span></li>
+</ul>
+
+<p><span style='font-size:10.0pt'>These items, along with a few other options
+can be configured in the <strong>Configuration</strong> dialog.&nbsp; The <strong>Configuration</strong>
+dialog will appear the first time the application is started.&nbsp; The
+configuration is stored on a per user basis in the current <span class=GramE>users</span>
+registry key under the following path:</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt'>HKEY_CURRENT_USER\Software\Spawn Editor</span></p>
+
+</blockquote>
+
+<p><span style='font-size:10.0pt'>All configuration information used by the
+editor is stored in this area of the registry.&nbsp; The items that can be
+configured are listed below:</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt'>
+
+<p><strong><span style='font-size:10.0pt'>RuUO.EXE</span></strong></p>
+
+<blockquote style='margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt'>To configure the path to the <span
+class=SpellE>RunUO</span> executable, click on the button to the right of the
+path field and&nbsp;an open file dialog will appear.&nbsp; Browse to the
+location of the RunUO.exe and select the file and click OK.</span></p>
+
+</blockquote>
+
+<p><span class=SpellE><strong><span style='font-size:10.0pt'>Ultima</span></strong></span><strong><span
+style='font-size:10.0pt'> Client</span></strong></p>
+
+<blockquote style='margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt'>The path to the <span class=SpellE>Ultima</span>
+client is configured automatically for you by the application based on the
+registry keys used by the <span class=SpellE>Ultima</span> Online client.&nbsp;
+This has been tested with all clients except for the Age <span class=GramE>Of</span>
+Shadows client.&nbsp; If the client can not be determined by <br>
+the application at startup, click on the button to the right of the path field
+and browse to the folder where the <span class=SpellE>Ultima</span> client is
+located.&nbsp; Select the <strong>client.exe</strong> or <strong>uotd.exe</strong>
+and click OK.&nbsp; This does two things.&nbsp; First, is to provide the editor
+with the path to all of the <span class=SpellE>neccessary</span> client files,
+namely the <strong>map*.<span class=SpellE>mul</span></strong> files.&nbsp; The
+second is to set the default <strong>Client Window</strong> setting used when
+the <strong>Sync</strong> option is checked in the editor.&nbsp; This is needed
+to send commands (keystrokes) to the client window if <span class=SpellE>neccessary</span>.</span></p>
+
+</blockquote>
+
+<p><strong><span style='font-size:10.0pt'>Default Zoom Level</span></strong></p>
+
+<blockquote style='margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt'>This sets the default zoom level when the
+editor starts.</span></p>
+
+</blockquote>
+
+<p><strong><span style='font-size:10.0pt'>Command Prefix</span></strong></p>
+
+<blockquote style='margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt'>This sets the default command prefix to be
+used when sending commands to the client window.</span></p>
+
+</blockquote>
+
+<p><strong><span style='font-size:10.0pt'>Client Window</span></strong></p>
+
+<blockquote style='margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt'>The client window is used to set the default
+client window title of the <span class=SpellE>Ultima</span> client.&nbsp; This
+is automatically set when the <span class=SpellE>Ultima</span> client path is
+selected of the client is either <strong>client.exe</strong> or <strong>uotd.exe</strong>.&nbsp;
+If any other file is selected as the <span class=SpellE>Ultima</span> client,
+this value will default <span class=GramE>to <strong>???</strong></span> <span
+class=GramE>and</span> will then have to be manually configured if the <strong>Sync</strong>
+option is to operate properly.</span></p>
+
+</blockquote>
+
+<p><strong><span style='font-size:10.0pt'>Default Spawn Details</span></strong></p>
+
+<blockquote style='margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt'>
+
+<p><span style='font-size:10.0pt'>The default values for a new <span
+class=SpellE>spawner</span> can be set here.&nbsp; When the <strong>Restored
+Defaults </strong>button is pressed in the <strong>Spawn Details</strong> group
+located in the top right panel, these values will be loaded.</span></p>
+
+</blockquote>
+
+</blockquote>
+
+<p><span style='font-size:10.0pt'>After all of these values have been set, the
+editor should be able to operate normally.&nbsp; If any of these values need to
+be changed at a later date, click on the <strong>Setup</strong> button in the <strong>Map
+Settings</strong> group located in the top left panel of the editor.</span></p>
+
+<p><span style='font-size:10.0pt'><a href="#Top">[Top]</a></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'>
+
+<hr size=2 width="100%" align=center>
+
+</div>
+
+<p><a name="#HowTo"></a><a name=Saving></a><span style='mso-bookmark:"\#HowTo"'><strong><i><u>How-To</u></i></strong></span><span
+class=GramE>&nbsp; </span><span style='font-size:10.0pt'><a href="#Top">[Top]</a></span></p>
+
+<p><span style='font-size:10.0pt'>Below are some short tutorials on how to use
+the Spawn Editor to create <span class=GramE>an</span> manipulate spawns.</span></p>
+
+<blockquote style='margin-top:5.0pt;margin-right:0in;margin-bottom:5.0pt'>
+
+<p><em><b><span style='font-size:10.0pt'>Creating <span class=GramE>A</span> <span
+class=SpellE>Spawner</span></span></b></em></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Pick
+     the desired map from the list of maps in the <strong>Map Settings</strong>
+     area in the top left panel.&nbsp; <span class=GramE>Lets</span> pick <strong>Trammel</strong>.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Left-Click
+     on the map to move the map to the desired position.<span
+     style='mso-spacerun:yes'>&nbsp; </span>If you are running a UO client you
+     can also click on the Go button and then left click to move your player on
+     the client to that location.<span style='mso-spacerun:yes'>&nbsp; </span></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Zoom
+     in/out of the map using the slider in the <strong>Map Settings</strong>
+     area to make defining the spawn area easier.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Left-Click-and-Hold
+     in the top-left corner of the spawn area and drag the mouse down to the
+     bottom-right corner of the spawn area.&nbsp; A white rectangle should be
+     displayed showing the area that the <span class=SpellE>spawner</span> will
+     define.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Use
+     the <strong>Spawn Types</strong> list to select what type of mobiles and/or
+     items you would like to spawn in this area.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Give
+     the <span class=SpellE>spawner</span> a name by changing the default name
+     in the <strong>Spawn Details</strong> area in the top right panel.&nbsp; <span
+     class=GramE>Lets</span> call it <strong>Trammel1.</strong></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Set
+     the rest of the <span class=SpellE>spawner</span> properties in the <strong>Spawn
+     Details</strong> area as required.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Right-Click
+     within the white rectangle.&nbsp; This will create the <span class=SpellE>spawner</span>
+     and add it to the <strong>Spawn List</strong> in the bottom right
+     panel.&nbsp; The spawn rectangle should now change from white to light
+     blue.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Right-Click-and-Hold
+     to drag the <span class=SpellE>spawner</span> region to another location.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>To
+     resize the region, move the mouse into the lower right corner of the
+     rectangle until the <span class=SpellE>tootip</span> says
+     &#8216;Resize&#8217;.<span style='mso-spacerun:yes'>&nbsp; </span>Then
+     Right-Click-and-Drag to resize it.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Spawn
+     entries can also be entered and edited by hand in the Spawn Entries area
+     at the bottom of the screen.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Click
+     on the <strong>Save</strong> button in the <strong>Spawn List</strong> and
+     save it to a file called <span class=SpellE><strong>MySpawner.xml</strong></span><strong>
+     </strong>into your <span class=SpellE>RunUO</span> directory.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Start
+     <span class=SpellE>RunUO</span>.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Login
+     to <span class=SpellE>RunUO</span> with and administrator account.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Load
+     the spawn file just save using the command <strong>[<span class=SpellE>XmlLoad</span>
+     <span class=SpellE>MySpawner.xml</span></strong></span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>To
+     see the <span class=SpellE>spawner</span>, go back to Spawn Editor and
+     click on the <strong>Sync</strong> check box so that it has a check mark
+     beside it.</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>Click
+     on the <span class=SpellE>spawner</span> you created in the <strong>Spawn
+     List</strong> (Trammel1).</span></li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l3 level1 lfo4;tab-stops:list .5in'><span style='font-size:10.0pt'>You
+     should be teleported to the exact location of the <span class=SpellE>spawner</span>.</span></li>
+</ol>
+
+</blockquote>
+
+<p><span style='font-size:10.0pt'><a href="#Top">[Top]</a></span></p>
+
+</div>
+
+</body>
+
+</html>

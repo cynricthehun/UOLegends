@@ -1,0 +1,429 @@
+Spawn Editor 2
+
+written by ArteGordon
+
+Summary:
+
+A standalone visual spawn editing program that works with the XmlSpawner2 system for online and offline creation and editing of xmlspawners and their spawn files as well as some online player and spawner and object tracking capabilities.
+This is the updated version of the original Spawn Editor written by BobSmart.
+
+Features:
+
+- Full support of all XmlSpawner2 properties and features.
+
+- Can read any current or previous version of xmlspawner .xml file, even original xmlspawner .xmls.
+
+- Can import all .map and .msf files
+
+- Drag-and-drop spawner placement and spawner region sizing.
+
+- Synchronization of spawner locations with online clients to allow for coordinated online/offline editing.
+
+- Online player position tracking and synchronization.
+
+- Spawn density and speed displays on the map.
+
+- Works with default or custom maps.
+
+- With the Transfer Server installed, realtime mobile, item, and player distributions from a live server can be displayed on the map along with spawn information.
+
+- Spawners designed in the Spawner Editor can be directly uploaded to or unloaded from a live server via the Transfer Server.
+
+Recent Updates:
+New to version 1.18
+updated 10/5/05
+- selection/spawn regions can now be dragged out in any direction instead of having to start from the upper left (thanks to Khaz for the suggestion).
+
+- resolved an issue with custom muls that were placed in custom folders instead of in the default UO client directory not being used (thanks to tindo for pointing this out).  Now if you change the client path in the Setup window to point to the location of your custom muls, they will be correctly used.  This involves a change in the UOMap.ocx tool, so replace the previous version and run Setup.bat again.
+
+
+New to version 1.17
+updated 9/6/05
+- added a new Edit->Modify option to modify properties on all displayed (Un-Filtered) spawners.
+
+- when switching maps, the view will be restored to the most recent location visited on that map instead of automatically centering the map.
+
+- fixed an error in writing TODStart to XML (minute/hour conversion factor was 50 instead of 60) which led to shifted TODStart values. (thanks to Knightshade for spotting this).
+
+New to version 1.16
+updated 9/1/05
+- updated UOMap.ocx to support the new Mondain's Legacy areas of the Fel/Tram map.  In order to access these areas ingame you will need to modify the server Scripts/Misc/MapDefinitions.cs to change the X size of the Fel and Tram maps from 6144 to 7168.
+
+- added support for the new multiple spawns per tick XmlSpawner2 feature.  Each spawn entry in the Details view now has a 'Per' field that corresponds to the 'Per' field in the ingame spawner gump.
+
+New to version 1.15b
+updated 9/1/05
+- added a -debug commandline argument to the editor that will enable debugging information to be sent to the output file 'debug.log' in the main Spawn Editor installation folder.  Also, a version of the editor compiled in debug mode has been attached in SpawnEditor2-debug.rar.  This is only needed by people who are having problems starting the editor that would like to get more debug information.
+
+New to version 1.15a
+updated 8/28/05
+- updated the UOMap.ocx map viewer control tool in SpawnEditor2-support.rar to fix a problem in displaying the Tokuno map. That is the only file that was changed.
+
+New to version 1.15
+updated 8/13/05
+- added a new 'Modify Properties' option to the Edit menu.  This option will allow you to modify property values across groups of selected spawners.  
+To use this new feature, follow these steps:
+
+1) Select a spawner (right click) in an area that you would like to modify.
+2) In the Spawn Details panel for that spawner, right click on any of the property controls to highlight them in yellow. Right-click again to deselect.  
+3) Set the values of those properties to the values that you would like to have applied to the other spawners.  
+4) Drag a selection window around the spawners that you would like to modify in the map window.  
+5) Select the Modify Properties option in the Edit menu.  After prompting, this will apply the highlighted settings to all selected spawners.
+
+This feature allows you to quickly change settings like MinDelay or SmartSpawning over large groups of spawners without having to edit each one individually.
+
+Note, not all of the properties can be highlighted.  Only properties that highlight with right-click can be modified in this way.  
+
+- spawners that are sent via the TransferServer will now have their First/LastModifiedBy properties set to the  name of the authenticated user that sent them.  Support for this feature requires the most recent update to XmlSpawner2 (v2.94). 
+
+- added a new filter to the Spawners panel of the Transfer Server Settings window that allows retrieving spawners based on the name of the staff that modified them First/Last.
+
+- added a new "[xts list" command that lets you list all of the currently active authentication tickets. This command is admin only by default.
+
+- updated the Transfer Server to v1.05 to support the new filter and command features.
+
+- added several new deletion options to the Edit->Delete menu. 'Delete Filtered Spawns' and 'Delete Unfiltered spawns' can be used to selectively delete spawns after applying display filtering.
+'Delete All Spawns' will remove all spawns regardless of filtering.
+
+- an option to open Display Filter Settings window has been added to the Tools menu.  This is exactly the same as opening it from the 'Settings' button in the Spawn List panel.
+
+- slight change to writing mode when saving files to avoid the possibility of having remnants of the previous file contents at the end of files when saving to an existing file. (thanks to Halciet for spotting this).
+
+
+New to version 1.14a
+updated 8/10/05
+- updated the UOmap.ocx map viewer in SpawnEditor2-support.rar. The previous version was not properly handling .mul diffs so some things would appear to be missing on some maps.
+
+- added in a new Notes spawner display filtering option that will allow you to select spawners based on string matches in the Notes field.
+
+- added a new Property Test spawner display filtering option that allows you to construct your own compound property tests to select spawners using all of the available spawner properties.  This uses the same syntax as the property tests in XmlSpawner2.  So, for example to select all filters that have a MinDelay > 5 mins and a HomeRange of < 30, you would use a test like
+
+MinDelay>5 & HomeRange<30 
+
+The property names are the same as those displayed in the Details panel.  The operators available are ><=! for greater than, less than, equal to, not equal to.
+Multiple tests can be combined with the &| and/or operators.
+
+New to version 1.14
+updated 8/9/05
+- added a new Spawner Filter window that allows additional control over which spawners are displayed on the map and in the Spawner List panel.  This is an extension of the simple entry string filter that was available in previous versions.  The filter window can be opened by pressing the 'Settings' button next to the 'Apply Filter' checkbox in the Spawner List panel.
+[b][u]Spawner Filters:[/u][/b]
+[b]Name[/b] - this will do a partial string match against the spawner name (optional case sensitivity) and can be inclusive (has) or exclusive (has not).
+[b]Entry[/b] - this will do a partial string match against all spawner entries and can be inclusive (has) or exclusive (has not)(optional case sensitivity)
+[b]Entry Type[/b] - match the actual entry type against a RunUO type such as basevendor (assemblies must be loaded for this option) and can be inclusive (has) or exclusive (has not).  This allows tests of subclasses.
+[b]SmartSpawning[/b] - you can select SmartSpawned only, or not SmartSpawned.
+[b]SequentialSpawning[/b] - you can select Sequentially spawned only, or not Sequentially spawned.
+[b]InContainers[/b] - you can select spawners in containers only, or not in containers.
+[b]ProximityTriggered[/b] - you can select spawners that are proximity triggered only, or not proximity triggered.
+[b]Avg Spawn Time[/b] - select spawners based on their average spawning rate (mindelay +maxdelay)/2.  You can select whether you want to get spawners with spawn times less than or greater than the specified value.
+[b]Map[/b] - you can select spawners from the current map only, or from all maps.
+
+Note that there are multiple Entry and Entry Type settings to allow additional combinatorial possibilities, such as 'has basevendor' and 'has not baseescortable'
+
+- Save to file and Send to Server functions will now use filter settings to determine what is saved/sent.  Only spawners that meet the filter criteria (not grayed out in the Spawner List) will be processed.
+Note, this does not apply to sending single spawners via the 'Send to Server' button in the Details panel.
+
+New to version 1.13a
+updated 8/8/05
+- improvement in spawner loading speed either via file or server due to optimization of the Spawn List tree display updating.
+
+- added a few more tooltips to various controls.
+
+- removed a test for existing files that prevented saving spawns to a new file.
+
+New to version 1.13
+update 8/6/05
+- fixed a spawner loading bug that was not properly assigning maxdelay.
+
+- added an option to download spawners from within a limited rectangular region of the map.  A 'Within Selection Window' checkbox has been added to the Spawners section of the Transfer Server Settings.  To use this feature, go to the main map and drag out a selection window using the left-button click and drag.  Then select the 'Within Selection Window' checkbox, and press the 'Get Spawners' button.
+
+- added the ability to Delete selected spawners from within a limited rectangular region of the map. To use this new feature, drag out a selection window and select the 'Delete Spawns in Selection Window' option from the new 'Edit' menu.
+The spawners to be deleted will be highlighted in blue.
+Note, that this can be combined with the 'Filters' option in the main Spawn List panel to delete only spawners with selected spawn entries within a limited region.
+
+- added the ability to Delete spawners outside of the selection window with the 'Delete Spawns NOT in Selection Window' option from the 'Edit' menu.  This is just the complement of the 'Delete Spawns in Selection Window' operation.
+
+- when importing .map files, any spawner with vendors on it will have its spawnrange automatically set to 0 to correspond to distro spawner behavior.  Note, this will only work if you have access to the RunUO core and script assemblies (i.e. you are running Spawn Editor on a system with the RunUO server installed) and have properly set the RunUO EXE path in the Setup configuration window.
+
+- added a new 'Avg Spawn Time' filter to the Spawners Transfer Server settings.  This allows you to retrieve spawners based on their average spawning rate (mindelay +maxdelay)/2.  You can select whether you want to get spawners with spawn times less than or greater than the specified value.
+
+- updated the Transfer Server to version 1.04 to support the new spawner filter features.
+
+New to version 1.12
+updated 8/5/05
+- added support for sending spawners from the Spawn Editor directly to a live server via the Transfer Server.
+This new feature requires the latest version of XmlSpawner2 (version 2.93).  The Transfer Server has also been updated to version 1.03.  Note that this includes an update of transferserver.dll.
+
+- The 'Send to Server' button in the Spawner List panel will send all currently loaded spawners to the server.  This can be convenient for remotely loading and unloading things like quests that you can preview in the editor and then deploy or remove from a server.
+
+- The 'Send to Server' button in the Details panel allows you to send the currently selected spawner to the server.  This allows to you quickly design a spawner in the editor and immediately deploy it on your server. 
+
+- Right-clicking either of the 'Send to Server' buttons will allow you do to the complementary 'Unload spawners' function.
+These are identical to (and use the same calls as) the [xmlload and [xmlunload functions in xmlspawner2.
+
+Note, when spawners are loaded or unloaded via the Transfer Server, it is done in the main server thread, just as if you had issued an [xmlload or [xmlload command ingame. This is unlike the Transfer Server retrieval functions that operate in a separate thread and so will not pause the main server.
+
+
+Recent Updates:
+New to version 1.11a
+updated 8/3/05
+- fixed a thread safety issue when retrieving spawners or objects via the Transfer Server.  Update to TransferServer version 1.02a for this fix.
+
+- added list displays for retrieved items/creatures/players in the individual Transfer Server Settings tabs.  Selecting an entry from one of the list displays will center the Spawn Editor map on the location of the object.
+
+- fixed a minor issue with the Blessed item filter.
+
+- added a TransferAccess attribute that can be used to selectively restrict access to specific transactions so that you could place Administrative restriction on Spawner transfers, while allowing GM access to object transfers.
+This is achieved by adjusting the TransferAttribute access level of the ProcessMessage method in the GetSpawnerData.cs and GetObjectData.cs scripts.
+They are set to Administrator access by default.
+
+- added a 'Running' filter option in the Spawner section of the Transfer Server.
+
+New to version 1.11
+updated 8/3/05
+- consolidated all of the Transfer Server settings into a new window that can be raised by selecting the 'Transfer Server Settings' option in the Tools menu.
+
+- added support for directly donwloading spawners from a live server via the Transfer Server.
+
+- updated the Transfer Server to version 1.02 to support the exchange of the new object and spawner information.  This requires the latest version of the XmlSpawner2 package (version 2.92).
+
+- expanded support for downloading object information on creatures, players, and items via the Transfer Server by adding new filtering criteria that can be applied.  Only objects that pass the filter criteria will be sent to Spawn Editor 2.
+To set these filters, bring up the Transfer Server Settings window, and select the appropriate filter tab.
+Here are the current filters available:
+[b][u]Players:[/u][/b]
+[b]AccessLevel[/b] - get players only, staff only, counselor only, gm only, seer only, admin only.
+[/b]Notoriety[/b] - get players that are Innocents, Criminals, or Murderers.
+[b]Map[/b] - you can load player information from the current map only, or from all maps.
+[b]'Get Players'[/b] button will clear all players loaded into Spawn Editor, and load the players from the server.
+
+[b][u]Creatures:[/u][/b]
+[b]Type[/b] - allows you to specify the creature type
+[b]Map[/b] - you can load creature information from the current map only, or from all maps.
+[b]'Get Creatures'[/b] button will clear all creatures loaded into Spawn Editor, and load the creatures from the server.
+
+[b][u]Items:[/u][/b]
+[b]Type[/b] - allows you to specify the item type
+[b]Controlled[/b] - get only creatures that are controlled or not controlled.
+[b]Notoriety[/b] - get only creatures that are Innocent, Invulnerable, or Attackable.
+[b]ItemID[/b] - allows you to specify the ItemID number 
+[b]Statics[/b] - get only items that are Statics or not Statics
+[b]InContainers[/b] - you can get only items that are in containers, or items that are not in containers.  Note, items carried by players/creatures packs or in bankboxes are considered carried.  To be in a container, they must be in a container that is placed in the world.
+[b]Carried[/b] - get only items that are carried by players/creatures (equipped or in their packs/bankboxes) or items that are not carried.
+[b]Movable[/b] - get only items that are movable or not movable.
+[b]Visible[/b] - get only items that are visible or not visible.
+[b]Blessed[/b] - get only items that are blessed or not blessed.
+[b]Map[/b] - you can load item information from the current map only, or from all maps.
+[b]'Get Items'[/b] button will clear all items loaded into Spawn Editor, and load the items from the server.
+
+[b][u]Spawners:[/u][/b]
+[b]Name[/b] - this will do a partial string match against the spawner name (optional case sensitivity)
+[b]Entry[/b] - this will do a partial string match against all spawner entries (optional case sensitivity)
+[b]SmartSpawning[/b] - you can select SmartSpawned only, or not SmartSpawned.
+[b]SequentialSpawning[/b] - you can select Sequentially spawned only, or not Sequentially spawned.
+[b]InContainers[/b] - you can select spawners in containers only, or not in containers.
+[b]ProximityTriggered[/b] - you can select spawners that are proximity triggered only, or not proximity triggered.
+[b]Modified[/b] - you can select spawners that have been modified before or after a given date and time.
+[b]Map[/b] - you can download spawners from the current map only, or from all maps.
+[b]'Get Spawners'[/b] button will clear all current spawners loaded into Spawn Editor, and load the spawners from the server (like the 'Load' button for reading spawners from a file).
+[b]Merge Spawners'[/b] button just add spawners from the server to the current spawner list (like the 'Merge' button for reading spawners from a file)
+
+New to version 1.10
+updated 7/31/05
+- added a new Notes area in the Advanced Details that can be used to enter notes for individual spawners that will be saved to the XML file in the Notes field (thanks to Vertigo for the suggestion).
+If a spawner has Notes available, then they will also appear in the map tooltip.  
+
+- fixed a minor glitch in tracking that was added in 1.9 that swapped Tram/Fel when displaying player location.
+
+- zoom scrolling on the map works when the Server panel is selected.
+
+- moved the Transfer Server/Port settings to the Setup window accessed from the Tools menu option.
+
+- renamed a few of the tab labels like the 'Map Settings' to 'Map', 'Transfer' Server to just 'Server', and 'Spawn List' to 'Spawners'
+
+
+New to Transfer Server version 1.01a
+updated 7/30/05
+- minor update to the transfer server in which creatures retrieved via the Transfer Server that have titles (such as vendors) will now have that title appended to their name displayed in their tooltips (e.g. 'Susan the Weaponsmith', instead of just 'Susan').
+This is just change to the GetObjectData.cs script.
+
+New to version 1.9a
+updated 7/30/05
+- added tooltip displays for all objects returned by the Transfer Server.  The object name will be displayed when the mouse hovers over the object identifier on the map.  If the object does not have a name, then the type will be displayed.
+Display of object tooltips can be toggled on/off by checking the 'Show Tips' in the Transfer Server panel.
+
+- updated the transfer server package to version 1.01 to support the new tooltip display information.
+
+New to version 1.09
+update 7/29/05
+- added support for interactive server communication, allowing access to live server information regarding current mobile and item distributions.  This is accomplished by the addition of the XmlSpawner2 Transfer Server (XTS), that runs in a separate thread and handles requests for information from Spawn Editor 2.
+
+Installation:
+1) Copy the TransferServer.cs and TransferMessage.cs scripts into your custom scripts area.
+2) Place a copy of the transferserver.dll file in your main RunUO installation folder. 
+3) Add the following lines to your RunUO Data/Assemblies.cfg file
+
+System.Runtime.Remoting.dll
+TransferServer.dll
+
+When you restart your server, the Transfer Server will be started by default and you will see a message on the console.  You can disable this by changing the default value of the 'Enabled' property in TransferServer.cs
+By default, the Transfer Server will use port 8030 for communication.  This can be changed in TransferServer.cs
+
+Several commands are available for controlling the Transfer Server.  the '[XTS [auth id][start][stop]' command can be used to start and stop the server.  The 'auth' command is only used by Spawn Editor for establishing session authentication tickets.
+You can start and stop the server at any time with the
+
+[xts start
+[xts stop
+
+commands.
+
+Authentication:
+Communication between Spawn Editor and the Transfer Server is handled via a limited lifetime session ticket system.  These tickets can only be obtained by users that are logged into an account on the RunUO server with the appropriate access level (admin by default).
+[b][u]Neither the Transfer Server nor Spawn Editor 2 ever use, send, or access any sensitive account information.[/u][/b]
+
+Each request to the server is authenticated using this ticket. To receive a session ticket, you must be connected to the RunUO server via a UO client and be logged in with the appropriate access level.  Select the 'Renew Session Authentication' from the Tools menu.  This will send a request for session authentication via the client.  The ticket will remain valid for a limited period of time (default 15 minutes).  Also, if you restart Spawn Editor, you will need to get a new ticket.
+Once you have a session ticket, you are no longer required to be logged in to your RunUO account for the duration of the ticket lifetime.
+
+Using it:
+Once you have established an authenticated session, you can load information regarding item and mobile locations using the 'Get Creatures', 'Get Players', 'Get Items' selections in the Tools menu.
+
+A new tab control panel has been added to the Map Settings area that gives additional control over the Transfer Server.
+In this panel you can specify the Transfer Server address and port.
+You can also specify type filters that will be used when retrieving information from the server.
+
+For example, to get the location of all houses on your server, just specify 'basehouse' in the item type field, then select 'Get Items' from the Tools menu, then select the 'Show Items' checkbox.
+You can get anything from corpses, to statics, to boats.  Just use the type name of the object you are interested in.
+
+For mobiles, just enter the type information in the Type field below the 'Show Creatures' checkbox.
+To see the distribution of orcs on your server, just specify 'orc' in the item type field, then select 'Get Creatures' from the Tools menu, then select the 'Show Creatures' checkbox.
+
+Players will be displayed as yellow squares, Mobiles as blue crosses, and Items as green crosses.
+
+Note that only items that are placed directly in the world will be retrieved.  Items in containers or carried on mobiles will be ignored.
+
+ 
+
+New to version 1.08
+updated 7/26/05
+- added the ability to add spawner entries into the current spawnpack through the right mouse click context menu in the Spawn Entries panel.
+
+- added tooltip descriptions to fields in the Spawn Entry and Spawn Details panels. These are seen when hovering over the field labels.
+
+- add an Always on Top window option to the new Options menu.
+
+- added default startup configuration options in the Setup menu for Statics, Details, Map, and Always On Top settings.
+
+- any changes to window position or size are now automatically saved on closing and restored on restarting.
+
+New to version 1.07b
+updated 7/22/05
+- added a new check for custom assemblies in the RunUO Data/Assemblies.cfg file that might have been included with some custom packages such as Arya's BoxServer.  If you were getting complaints about not being able to load types on startup, then this may resolve the issue.
+
+New to version 1.07a
+update 7/21/05
+- added the ability to directly import .msf files. Select the 'Import .msf file' option in the File menu.  Note that individual entry override settings are not imported (the entries are imported, but the override settings are ignored) and all such entries are logged in the 'import.log' file in the main SpawnEditor2 directory (where SpawnerEditor2.exe resides).
+
+New to version 1.07
+update 7/21/05
+- added the ability to directly import .map files. Select the 'Import .map file' option in the File menu.  
+
+New to version 1.06
+updated 7/20/05
+- added color coding of different subgroup entries in the Spawn Entries panel.
+
+- a purple triangle icon is now used to identify container-held spawners on the map to distinguish them from normal world placed spawners that display as blue diamonds.
+
+- fixed the force merge into current map option (right click on the Merge button in the Spawn List panel).
+
+- added the ability to manually specify the x y and z-coordinate of the spawner in the XY bounds panel accessed via the XY button in the Basic Details panel.
+
+- added a new Shading option in the Map Settings panel.  Two shading options, Density and Speed, are available via the drop down menu next to the 'Shade by' checkbox.  
+
+- the new 'Density' option will display the home range of the spawner color coded by the average density of spawns (max spawns/total possible home range). Brighter color means higher density. Note, the home range displayed is the maximum area that any spawn might wander to after they are spawned.  The normal red bounding rectangle simply shows the spawning area (where they are spawned).
+This option can also be used to visualize the likely coverage area of the spawner.
+Note, that in dungeons the coverage area will tend to include inaccessible regions, so the reported density will not necessarily correspond to the actual number of mobs you will find per unit area, but on average it will still give a good indication of higher and lower density spawning regions.
+
+- the new 'Speed' shading option will display the average spawning rate within the spawning area using and intensity color code.  Brighter means faster.
+
+- The tool tip displayed when the mouse hovers over spawns on the map now displays the average spawn density within a 32x32 (roughly one screen) tile area.
+
+New to version 1.05c
+updated 7/19/05
+- fixed a bug that would resist click-and-drag attempts to resize spawning areas if the SpawnRange setting in the Details panel was specified
+
+New to version 1.05b
+updated 7/19/05
+- added an Import/Export Spawn Types option in the Files menu that allows reading in and saving the All Spawn Types information directly instead of mining it from the server/scripts assemblies.
+This allows you to use the editor with full type support even on systems with no server installed.
+
+New to version 1.05
+updated 7/18/05
+- fixed a possible crash bug when changing the spawner name when no spawner had been loaded or defined (thanks to Vertigo for pointing this out).
+
+- changed the the spawn type panel used to select and add spawn entries from the predefined type list.  The spawn type panel has been moved into a new Tab panel in the Spawn details area.  Go into Details view and select the 'SpawnTypes' tab.  This will display the new expanded spawn types panel that has two new views that support the new 'Spawn Pack' feature in which users can create an unlimited number of customized spawn type lists.
+
+- Spawn types from the main list can still be added in the same way as they used to, but now, additionally, selected spawn types can be added to a user defined 'Current Spawn Pack' which is displayed in the right panel. 
+
+- The archive of all defined spawn packs is displayed in the lower right panel labeled 'All Spawn Packs'.  
+Selecting a spawn pack from the 'All Spawn Packs' list will place that pack's contents into the 'Current Spawn Pack' list. 
+
+- The Current Spawn Pack can be added to an archive of spawn packs using the 'Update Spawn Packs' button.  If the spawn pack name is not already in the 'All Spawn Packs' list then a new pack will be added. If the name matches an existing Spawn Pack, then that pack will be updated. 
+
+- To remove spawn types from the current spawn pack, or to remove spawn packs from the 'All Spawn Packs' list, use the right-click context menu.
+
+- Spawn types can be added to the current spawner from either the current spawn pack or from the full list using the 'Add to Spawner' buttons.
+
+- When exiting the program, the spawn pack definitions are automatically saved to the default SpawnPacks.dat file in the SpawnEditor2 folder.  This file is also loaded by default when starting the program.
+Spawn packs can also be manually saved and loaded from the File menu.  
+
+- the Spawn Templates panel, now located where the Spawn Types panel used to be, is not yet functional, so dont bother trying to figure out how to enable it.
+
+New to version 1.04
+updated 7/12/05
+
+- added a confirmation dialog on closing the application (thanks to Vertigo for the suggestion).
+
+- Added a filtering option that can used to quickly find spawners with certain spawns.  The spawn entries in each spawner will be matched against the filter string, and only those that match (partial non-case sensitive matches are allowed) will be displayed.  Spawners that dont match will be grayed out in the Spawn List panel (although they can still be selected if you like).  Also, the total count at the bottom of the panel will indicate the total number of matching spawners.
+The new filter option can be found just above the Spawn List panel.
+
+- slightly increased the right-click-and-hold time required to initiate spawn region drag-and-drop in the map view.  This was to avoid accidental spawn region repositioning with normal right clicking.
+
+- shuffled a few things around in the Spawn Type panel to give a little more real estate to the spawn type selection view.
+
+
+New to version 1.03
+updated 7/12/05
+
+- added two new tabs in the Spawn List panel that provide support for Region and Go location display.
+
+- The Regions tab brings up a list of regions loaded from the RunUO Data/regions.xml file and allows these regions to be selected and displayed on the maps.  Multiple regions can be selected and if the 'Sync' options is also selected, the player will be moved to the region Go location when selected.
+
+- The Go tab brings up a list of locations read from the RunUO Data/Locations/*.xml files.  Selecting a location from this list will center the map on that location, and if the 'Sync' option is also selected, the player will be move to the location as well.
+
+- changed the name of the executable from SpawnEditor.exe to SpawnEditor2.exe
+
+New to version 1.02
+updated 7/11/05
+- spawner maxcount is automatically increased when new spawns are added
+
+- added the Snap to Region toggle in the Map settings panel that allows you to automatically move to the center of the spawning region instead of to the spawner location when spawners are selected.  Useful when the spawning region is not centered around the spawner.
+
+minor update to 1.01a
+
+- Window size in no-detail view is saved/restored when switching between detail and no-detail views if you happened to resize it.
+
+- Window should no longer try to autoresize with changes in the screen font.
+
+New to version 1.01
+updated 7/10/05
+[b]- overall spawner maxcount is now automatically incremented when any of the entry maxcounts are changed.[/b]
+
+[b]- added a new map indicator for the actual spawner location (small blue diamond).[/b]
+
+[b]- a new 'Lock' spawner location option has been added to the Map Settings panel[/b] that allows spawning regions to be resized or moved independently of the spawner location.  Try checking the box and then moving or resizing a selected spawn region.
+
+[b]- fixed a bug with the scrollbar not allowing you to scroll all the way down long spawn entry lists.[/b]
+
+[b]- simple renaming of the archives to spawneditor2-vxxx and spawneditor2-support.[/b]  The support package contains the required libraries and will generally not change with new versions unless otherwise indicated.
+
+New to version 1.00
+updated 7/7/05
+- updated original Spawn Editor with XmlSpawner2 support.
